@@ -1,0 +1,27 @@
+pandas
+openpyxl
+psycopg2-binary
+
+
+| Package           | Purpose                         |
+| ----------------- | ------------------------------- |
+| `pandas`          | Read, clean, transform CMS data |
+| `openpyxl`        | Read/write Excel `.xlsx` files  |
+| `psycopg2-binary` | Connect Python to PostgreSQL    |
+
+
+
+
+folder = Path("Daily CMS Reports")
+
+files = list(folder.glob("Demand_*.xlsx"))
+
+print("\nCMS files found:")
+
+for file in files:
+    date_text = file.stem.replace("Demand_", "")
+    report_date = datetime.strptime(date_text, "%Y-%m-%d").date()
+
+    print(file.name, "→", report_date)
+
+exit()
